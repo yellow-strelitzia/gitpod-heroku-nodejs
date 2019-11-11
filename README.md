@@ -8,5 +8,5 @@ steps to use this repo.
 4. setup some authentication suggested by Gitpod.
 5. Setup Heroku account and try to establish link between your forked GitHub repo. and Heroku app.
 
-<Japanese>
-</Japanese>
+`<Japanese>`
+`</Japanese>`
