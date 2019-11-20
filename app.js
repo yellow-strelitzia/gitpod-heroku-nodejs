@@ -43,4 +43,4 @@ app.get('/nextholiday', function(req, res, next){
     })();
 }); 
 
-app.listen(port, () => console.log('Server http://localhost:'+port));
+app.listen(port, () => console.log('Listening on port '+port));
