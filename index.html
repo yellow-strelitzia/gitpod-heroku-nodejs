@@ -14,8 +14,9 @@
     <script type="text/javascript">
       window.addEventListener( "DOMContentLoaded", function() {
         let tzname = jstz.determine().name();
+
         fetch( location.origin + "/nextholiday", { "timezonename" : tzname } )
-        .then( response => response.json() )
+        .then( resp2 => resp2.json() )
         .then( json => {
           let title = document.getElementById( "holidaytitle" );
           let detail = document.getElementById( "holidaydetail" );
