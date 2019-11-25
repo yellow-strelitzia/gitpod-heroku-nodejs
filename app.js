@@ -1,6 +1,7 @@
 let port = process.env.PORT || 5000;
 
 const moment = require('moment');
+require('moment-timezone');
 const fetch = require('node-fetch');
 const express = require('express');
 const app = express();
@@ -14,6 +15,7 @@ app.get('/holiday.jpg', function(req, res,){
 }); 
 
 app.get('/nextholiday', function(req, res, next){
+    moment.tz.setDefault(req.query.timezonename);
     let datenow = moment();
 
     let getNextHolidayCore = async (year) => {
