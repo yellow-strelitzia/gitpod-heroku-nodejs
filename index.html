@@ -14,14 +14,18 @@
     <script type="text/javascript">
       window.addEventListener( "DOMContentLoaded", function() {
         let tzname = jstz.determine().name();
-
-        fetch( location.origin + "/nextholiday", { "timezonename" : tzname } )
+        fetch( "https://jsonip.com")
         .then( resp2 => resp2.json() )
         .then( json => {
-          let title = document.getElementById( "holidaytitle" );
-          let detail = document.getElementById( "holidaydetail" );
-          title.innerHTML = json.localName;
-          detail.innerHTML = json.date;
+          fetch( location.origin + "/nextholiday?"
+                 + "timezonename=" + tzname + "&ipaddress=" + json.ip )
+          .then( resp3 => resp3.json() )
+          .then( json => {
+            let title = document.getElementById( "holidaytitle" );
+            let detail = document.getElementById( "holidaydetail" );
+            title.innerHTML = json.localName;
+            detail.innerHTML = json.date;
+          } );
         } );
       }, false );
     </script>

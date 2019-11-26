@@ -18,14 +18,9 @@ app.get('/nextholiday', function(req, res, next){
     moment.tz.setDefault(req.query.timezonename);
     let datenow = moment();
 
-    let reqip = req.headers['x-forwarded-for'] || 
-     req.connection.remoteAddress || 
-     (req.socket ? req.socket.remoteAddress : undefined) ||
-     req.connection.socket.remoteAddress;
-
     let getNextHolidayCore = async (year) => {
       // Web API , Geo loc
-      const res2 = await fetch('http://free.ipwhois.io/json/'+ reqip);
+      const res2 = await fetch('http://free.ipwhois.io/json/'+ req.query.ipaddress);
       let geolocinfo = await res2.json();
 
       // Web API , Nager.date
@@ -50,7 +45,7 @@ app.get('/nextholiday', function(req, res, next){
       if ( target == null ) {
         target = await getNextHolidayCore( String(datenow.year() + 1) );
       }
-      console.log( request.headers );
+      console.log( req.headers );
       console.log( 'found next holiday : ' + target. date + "  " + target.localName );
       res.json(target);
     })();
